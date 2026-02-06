@@ -1,29 +1,32 @@
 public class Worker extends Person {
-
     private double hourlyPayRate;
 
-    public Worker(String firstName, String lastName, String id,
-                  String title, int yob, double hourlyPayRate) {
-
-        super(firstName, lastName, id, title, yob);
+    public Worker(String firstName, String lastName, String ID, String title, int YOB, double hourlyPayRate) {
+        super(firstName, lastName, ID, title, YOB);
         this.hourlyPayRate = hourlyPayRate;
     }
 
     public double calculateWeeklyPay(double hoursWorked) {
-        double regularHours = Math.min(hoursWorked, 40);
-        double overtimeHours = Math.max(0, hoursWorked - 40);
-        return (regularHours * hourlyPayRate) + (overtimeHours * hourlyPayRate * 1.5);
+        if (hoursWorked <= 40) {
+            return hoursWorked * hourlyPayRate;
+        } else {
+            double regularPay = 40 * hourlyPayRate;
+            double overtimeHours = hoursWorked - 40;
+            double overtimePay = overtimeHours * (hourlyPayRate * 1.5);
+            return regularPay + overtimePay;
+        }
     }
 
-    public double displayWeeklyPay(double hoursWorked) {
-        double weeklyPay = calculateWeeklyPay(hoursWorked);
-        System.out.printf("Weekly Pay for %.2f hours worked: $%.2f%n", hoursWorked, weeklyPay);
-        return weeklyPay;
+    public void displayWeeklyPay(double hoursWorked) {
+        double regHours = Math.min(40, hoursWorked);
+        double otHours = Math.max(0, hoursWorked - 40);
+        double regPay = regHours * hourlyPayRate;
+        double otPay = otHours * (hourlyPayRate * 1.5);
+
+        System.out.printf("Regular: %.1f hrs ($%.2f) | Overtime: %.1f hrs ($%.2f) | Total: $%.2f%n",
+                regHours, regPay, otHours, otPay, (regPay + otPay));
     }
 
-    public String toCSV() {
-        return String.format("%s,%s,%s,%s,%d,%.2f",
-                getFirstName(), getLastName(), getIDNum(),
-                getTitle(), getYOB(), hourlyPayRate);
-    }
+    @Override
+    public String toCSVDataString() { return super.toCSVDataString() + "," + hourlyPayRate; }
 }
