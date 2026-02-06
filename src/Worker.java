@@ -21,9 +21,9 @@ public class Worker extends Person {
         return weeklyPay;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Worker[ID=%s, Name=%s %s, Title=%s, YOB=%d, HourlyPayRate=%.2f]",
-                getIDNum(), getFirstName(), getLastName(), getTitle(), getYOB(), hourlyPayRate);
+    public String toCSV() {
+        return String.format("%s,%s,%s,%s,%d,%.2f",
+                getFirstName(), getLastName(), getIDNum(),
+                getTitle(), getYOB(), hourlyPayRate);
     }
 }
