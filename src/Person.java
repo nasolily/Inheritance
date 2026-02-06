@@ -1,29 +1,17 @@
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import static java.nio.file.StandardOpenOption.CREATE;
-
 public class Person {
-    private String IDNum;
     private String firstName;
     private String lastName;
+    private String IDNum;
     private String title;
     private int YOB;
 
-    //Constructor
-
-    public Person(String IDNum, String firstName, String lastName, String title, int YOB) {
-        this.IDNum = IDNum;
+    public Person(String firstName, String lastName, String IDNum, String title, int YOB) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.IDNum = IDNum;
         this.title = title;
         this.YOB = YOB;
     }
-
 
     //Getters and Setters
 
@@ -81,6 +69,8 @@ public class Person {
      * Convert the Person object to a CSV data string.
      * @return A string in CSV format representing the Person object.
      */
+
+    public String fullName() { return firstName + " " + lastName; }
 
     public String toCSVDataString() {
         return IDNum + "," + firstName + "," + lastName + "," + title + "," + YOB;
