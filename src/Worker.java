@@ -2,7 +2,7 @@ public class Worker extends Person {
     private double hourlyPayRate;
 
     public Worker(String firstName, String lastName, String ID, String title, int YOB, double hourlyPayRate) {
-        super(firstName, lastName, ID, title, YOB);
+        super(ID, title, firstName, lastName, YOB);
         this.hourlyPayRate = hourlyPayRate;
     }
 
@@ -28,5 +28,19 @@ public class Worker extends Person {
     }
 
     @Override
-    public String toCSVDataString() { return super.toCSVDataString() + "," + hourlyPayRate; }
+    public String toCSVDataString() {
+        return super.toCSVDataString() + "," + hourlyPayRate;
+    }
+
+    @Override
+    public String toXMLDataString() {
+        return "<worker>" + super.toXMLDataString() +
+                "<hourlyPayRate>" + hourlyPayRate + "</hourlyPayRate></worker>";
+    }
+
+    @Override
+    public String toJSONDataString() {
+        return "{ \"worker\": { " + super.toJSONDataString() +
+                ", \"hourlyPayRate\": " + hourlyPayRate + " } }";
+    }
 }

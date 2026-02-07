@@ -65,6 +65,24 @@ public class Person {
                 ", YOB=" + YOB +
                 '}';
     }
+
+    public String toXMLDataString() {
+        return "<id>" + IDNum + "</id>" +
+                "<title>" + title + "</title>" +
+                "<firstName>" + firstName + "</firstName>" +
+                "<lastName>" + lastName + "</lastName>" +
+                "<yob>" + YOB + "</yob>";
+    }
+
+
+    public String toJSONDataString() {
+        return "\"id\": \"" + IDNum + "\"," +
+                "\"title\": \"" + title + "\"," +
+                "\"firstName\": \"" + firstName + "\"," +
+                "\"lastName\": \"" + lastName + "\"," +
+                "\"yob\": " + YOB;
+    }
+
     /**
      * Convert the Person object to a CSV data string.
      * @return A string in CSV format representing the Person object.
