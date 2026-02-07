@@ -5,11 +5,11 @@ public class Person {
     private String title;
     private int YOB;
 
-    public Person(String firstName, String lastName, String IDNum, String title, int YOB) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public Person(String IDNum, String title, String firstName, String lastName,  int YOB) {
         this.IDNum = IDNum;
         this.title = title;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.YOB = YOB;
     }
 
@@ -21,6 +21,14 @@ public class Person {
 
     public void setIDNum(String IDNum) {
         this.IDNum = IDNum;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getFirstName() {
@@ -39,14 +47,6 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getYOB() {
         return YOB;
     }
@@ -59,9 +59,9 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "IDNum='" + IDNum + '\'' +
+                ", title='" + title + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", title='" + title + '\'' +
                 ", YOB=" + YOB +
                 '}';
     }
@@ -73,6 +73,6 @@ public class Person {
     public String fullName() { return firstName + " " + lastName; }
 
     public String toCSVDataString() {
-        return IDNum + "," + firstName + "," + lastName + "," + title + "," + YOB;
+        return IDNum + ","  + title + "," + firstName + "," + lastName + "," + YOB;
     }
 }

@@ -6,12 +6,12 @@ class PersonTest {
 
     @Test
     void constructorTest() {
-        Person p = new Person("123456", "John", "Doe", "Mr.", 2000);
+        Person p = new Person("123456", "Mr.", "John", "Doe", 2000);
 
         assertEquals("123456", p.getIDNum());
+        assertEquals("Mr.", p.getTitle());
         assertEquals("John", p.getFirstName());
         assertEquals("Doe", p.getLastName());
-        assertEquals("Mr.", p.getTitle());
         assertEquals(2000, p.getYOB());
     }
 
